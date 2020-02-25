@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+<title>Typing</title>
+
+<h1 class = "TopBanner">Typing Game</h1>
+
+
+
+<ul class="menuList">
+    <li class="menuItem"><a class="menuItemA" onclick="window.location.href = 'home.html';">Home</a></li>
+    <li class="menuItem"><a class="menuItemA" onclick="window.location.href = 'index.html';">Typing Game</a></li>
+    <li class="menuItem"><a class="menuItemA" onclick="window.location.href = 'test.html';">Test1</a></li>
+    <li class="menuItem"><a class="menuItemA" onclick="window.location.href = 'broken.html';">Test2</a></li>
+</ul>
+
+</head>
+
+<body>
+<div class="gameContent">  
+
+        <label class="container">Adjectives
+            <input id="adjsBox" type="checkbox" checked="checked">
+            <span class="checkmark checkmark-adj"></span>
+        </label>
+
+        <label class="container">Nouns
+            <input id="nounsBox" type="checkbox" checked="checked">
+            <span class="checkmark checkmark-noun"></span>
+        </label>      
+
+        <label class="container">Verbs
+            <input id="verbsBox" type="checkbox" checked="checked">
+            <span class="checkmark checkmark-verb"></span>
+        </label>
+
+
+    <p id="testBox" class = "Main">Press 'Start' to begin</p>
+
+    <input type="text" id="typingInput" class="styleBox">
+    <input type="button" id="start" class="startBtn" value="Start"></input>
+    <input type="button" id="restart" class="startBtn" value="Restart" hidden></input>
+    
+    <p id="gameCount" class = "count"></p>
+    <p id="errorCount" class = "count"></p>
+    <p id="percentage" class = "count"></p>
+    
+</div>
+
+<div class="wordContainer">
+   <div class="correctWords" id="correctCount">
+        Correct Words
+
+        <hr/>
+    </div> 
+    <div class="incorrectWords" id="incorrectCount">
+        Incorrect Words
+        
+        <hr/>
+    </div>  
+
+
+    <div class="correctWords">
+        <p id="correctWords" class="wordListCorrect"></p>
+    </div> 
+
+
+
+    <div class="incorrectWords">
+        <p id="incorrectWords" class="wordListInorrect"></p>
+    </div>
+    
+    
+
+   
+ 
+        
+</div>
+
+</body>
+
+
+<script src="typing.js"></script>
+</html>

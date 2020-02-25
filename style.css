@@ -1,0 +1,323 @@
+.startBtn{
+    min-width: 50px;
+    border-style: none;
+    background-color: dimgray;
+    color: white;
+    padding: 1px 5px 1px 5px;
+    font-size: 13px;
+    position: absolute;
+    height: 20.4px;
+    margin-right: 15px;
+    text-align: center;
+}
+
+.startBtn:hover {
+    background-color: rgb(146, 146, 146);
+}
+
+.styleBox:focus {
+  outline-style: none;
+}
+
+.TopBanner{
+    background-color: dimgrey;
+    display: block;
+    padding: 20px 20px 20px 20px;
+    margin: 0;
+    box-shadow: -5px 0px 5px aqua;
+}
+ 
+.Main {
+    margin: 20px 12px 20px 0px;
+}
+
+body {
+    background-color: grey;
+    color: white;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: Arial;
+}
+
+.styleBox{
+
+    min-width: 300px;
+    background-color: lightgray;
+    border-style: hidden;
+    border-width: 0.5px;
+    border-color: red;
+    font-size: 16px;
+
+}
+
+.menuBtn {
+    width: 50px;
+    border-style: none;
+    background-color: dimgray;
+    color: white;
+    padding: 10px;
+    width: 90px;
+    border-top: solid;
+    border-color: black;
+    border-width: 2px;
+
+    font-size: 11px;
+}
+
+.menuBtn:hover {
+    background-color: rgb(146, 146, 146);
+}   
+
+.menuBtn:focus {
+    border-style: none;
+}
+
+.menuList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: dimgray;
+}
+
+.menuItem {
+    float: left; 
+}
+
+.menuItemA {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.menuItemA:hover {
+    background-color: rgb(146, 146, 146);
+}
+
+.error {
+    text-align: center;
+    margin-top: 10%;
+
+}
+
+.homeBtn {
+    border-style: none;
+    background-color: dimgray;
+    color: white;
+    padding: 8px;
+    border-width: 2px;
+    border-radius: 6px;
+
+}
+
+.homeBtn:hover {
+    background-color: rgb(146, 146, 146);
+}
+
+.count {
+    
+    
+    margin: 5px 0px 5px 0px;
+    
+}
+
+.wordContainer {
+    text-align: center;
+    border: solid;
+    border-width: 2px;
+    width: 600px;
+    min-height: 100px;
+    
+    padding: 5px 10px 2px 5px;
+    margin: 20px 0px 0px 75px;
+    position: relative;
+    overflow: auto;
+    display: inline-block;
+}
+
+.correctWords {
+    float: left;
+    width: 50%;
+    height: 100%;
+    position: relative;
+    word-wrap: break-word;
+    text-align: center;
+}
+.wordListCorrect {
+    color: white;
+    text-align: center;
+    width: 100%;
+    float: left;
+
+}
+.incorrectWords {
+    float: left;
+    width: 50%;
+    height: 100%;
+    position: relative;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+
+ 
+.wordListInorrect {
+    color: white;
+    float: left;
+    text-align: center;
+    width: 100%;
+}
+
+.gameContent {
+    float: left;
+    padding-top: 5px;
+    padding-left: 10px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1px 0px 0px 0px;
+    padding: 0;
+
+}
+
+hr.vertical {
+
+    height: 100%;
+    width: 1px;
+    display: block;
+    border-top: none;
+    border-right: 1px solid white;
+
+}
+
+/* Customize the label (the container) */
+.container {
+    top: 5px;
+    text-align: center;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+  
+    margin-top:5px;
+    margin-bottom: 12px;
+  
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: lightgrey;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: rgb(2, 177, 177);
+  }
+
+  .container input:checked ~ .checkmark-adj {
+      background-color: rgb(2, 177, 177);
+  }
+
+  .container input:checked ~ .checkmark-noun {
+    background-color: rgb(255, 0, 255);
+}
+
+.container input:checked ~ .checkmark-verb {
+    background-color: rgb(255, 136, 0);
+}
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 4.5px;
+    top: 2px;
+    width: 2.5px;
+    height: 6px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  
+
+
+
+  .testDiv {
+    
+    margin-top: 5px;
+    margin-left: 5px;
+    background-color: dimgray;
+    border-style: solid;
+    border-radius: 4px;
+    border-color: dimgray;
+    width: fit-content;
+    padding: 2px 3px 2px 3px;
+    float:left;
+  }
+
+  .testDiv-adj {
+      background-color: rgb(2, 177, 177);
+      border-color: rgb(2, 177, 177);
+  }
+
+  .testDiv-noun {
+    background-color: rgb(255, 0, 255);
+    border-color: rgb(255, 0, 255);
+  }
+
+  .testDiv-verb {
+      background-color:  rgb(255, 136, 0);
+      border-color: rgb(255, 136, 0);
+  }
+
+  .styleBox-test {
+      margin-left: 10px;
+      margin-top: 15px;
+      float:left;
+  }
+

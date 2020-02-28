@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="./words.js"></script>
 <title>Typing</title>
 
 <h1 class = "TopBanner">Typing Game</h1>
@@ -17,7 +18,7 @@
 
 </head>
 
-<body>
+<body onload="getLengthRange">
 <div class="gameContent">  
 
         <label class="container">Adjectives
@@ -35,7 +36,12 @@
             <span class="checkmark checkmark-verb"></span>
         </label>
 
-
+        <div class="lengthContainer">
+            <p id="sliderValue"></p>
+            <input type="range" min="0" max="0" value=10 class="lengthSlider" id="lengthRange">
+           
+        </div>
+        
     <p id="testBox" class = "Main">Press 'Start' to begin</p>
 
     <input type="text" id="typingInput" class="styleBox">
@@ -60,12 +66,14 @@
         <hr/>
     </div>  
 
+ 
 
     <div class="correctWords">
         <p id="correctWords" class="wordListCorrect"></p>
+        <div class="vr"></div>
     </div> 
 
-
+    
 
     <div class="incorrectWords">
         <p id="incorrectWords" class="wordListInorrect"></p>

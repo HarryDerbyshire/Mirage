@@ -12,7 +12,7 @@ let nounCheck = document.getElementById("nounsBox"); //Nouns checkbox
 let verbCheck = document.getElementById("verbsBox"); //Verbs checkbox
 let slider = document.getElementById("lengthRange"); //Slider for length
 let sliderDisplay = document.getElementById("sliderValue"); //Display for current slider value
-
+let lenCount = 0;
 //Counters
 let total = 0; //Player correct score
 let counter = 0; //Times game has been run
@@ -20,7 +20,8 @@ let counter = 0; //Times game has been run
 //All data regarding the words to be used
 let correctWordsArray = [];
 let incorrectWordsArray = [];
-const wordsObj = json; //json is from the external js file that is loaded in "words.js"
+const wordsObj = extWords; //extWords is from the external js file that is loaded in "words.js"
+const numObj = numPad; //numPad is from the external js file that is loaded in "words.js"
 let wordArr = [];
 
 //Generates the array of words to be shown to user
@@ -41,32 +42,41 @@ function generateArray() {
     };
 
     tempWordArr = [].concat(...wordArr); //Flattens multidimensional array
+    wordArr = tempWordArr;
+    getLengthRange();
     wordArr = tempWordArr.filter(word => word.length <= slider.value);
-    //getLengthRange();
+
 };
 
 function getLengthRange() {
-    let maxLength;
-    let minLength;
-    generateArray();
-    for(let i=0; i < wordArr.length; i++){
-        if(i ===0 || wordArr[i].length > maxLength){
-            maxLength = wordArr[i].length;
+
+
+    //generateArray();
+/*     for(let i=0; i < wordArr.length; i++){
+        if(i === 0 || wordArr[i].length >= slider.max){
+           slider.max = wordArr[i].length;
         }
 
-        if(wordArr[i].length < minLength){
-            minLength = wordArr[i].length;
+        if(wordArr.length > 0 && wordArr[i].length < slider.min){
+            slider.min = wordArr[i].length;
         }     
-    }
+    }; */
 
-    slider.min = minLength;
-    slider.max = maxLength;
-    slider.value = maxLength
+    
+    
+    /* sliderDisplay.innerText = `Max Length: ${slider.value}`;
+    console.log(lenCount); */
+ 
+    slider.max = Math.max(...(wordArr.map(el => el.length)));
+    slider.min = Math.min(...(wordArr.map(el => el.length)));
+    console.log(slider.value);
     sliderDisplay.innerText = `Max Length: ${slider.value}`;
-};
+}; 
 
-getLengthRange();
-sliderDisplay.innerText = `Max Length: ${slider.value}`;
+
+
+generateArray();
+//sliderDisplay.innerText = `Max Length: ${slider.value}`;
 
 //Determines which word type it is and returns the CSS class
 function checkType () {
@@ -143,7 +153,6 @@ adjCheck.addEventListener("change", function() {
 //Event listening for nouns checkbox being changed
 nounCheck.addEventListener("change", function() {
     checkEvent(nounCheck);
-
 });
 
 //Event listening for verbs checkbox being changed
@@ -157,7 +166,7 @@ function checkEvent(boxName) {
     if(allUnchecked() === false && startButton.hidden === true) {
         generateArray();
         p.innerText = generateWord();
-        getLengthRange()
+        sliderDisplay.innerText = `Max Length: ${slider.value}`;
     } else if (allUnchecked() === true) {
         boxName.checked = true;
     };
@@ -188,6 +197,7 @@ function gameRun () {
     //If incorrect
     } else {
         userInput.style.borderStyle = "solid"; //Creates the red incorrect border
+        userInput.style.borderColor = "red";
         incorrectWordsArray.push(userInput.value);
         addPill((incorrectWordsArray.toString().split(",").pop()), "incorrectWords", "wordPill");
     }; 
@@ -222,7 +232,7 @@ userInput.addEventListener('keydown', event => {
 startButton.addEventListener("click", event => {
     clearData()
     generateArray();
-    getLengthRange();
+    //getLengthRange();
     p.innerText = generateWord();
     startButton.hidden = true;
     restartButton.hidden = false;

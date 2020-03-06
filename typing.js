@@ -1,6 +1,8 @@
 //DOM definitions
 let userInput = document.getElementById("typingInput"); //User text input
-let p = document.getElementById("testBox"); //Text display to user
+let p = document.getElementById("testBox"); //First word to display to user
+let p2 = document.getElementById("secondWord");
+let p3 = document.getElementById("thirdWord");
 let count = document.getElementById("gameCount"); //User's score
 let percent = document.getElementById("percentage"); //User's percentage
 let startButton = document.getElementById("start"); //Game run button
@@ -24,11 +26,17 @@ const wordsObj = extWords; //extWords is from the external js file that is loade
 const numObj = numPad; //numPad is from the external js file that is loaded in "words.js"
 let wordArr = [];
 
+
+p2.style.visibility = "hidden";
+p3.style.visibility = "hidden";
 //Generates the array of words to be shown to user
 function generateArray() { 
 
     wordArr = []; //Empties Array to be repopulated
     let tempWordArr = [];
+
+
+
     if (adjCheck.checked === true) {
         wordArr.push(wordsObj.adjectives);
     };
@@ -43,8 +51,10 @@ function generateArray() {
 
     tempWordArr = [].concat(...wordArr); //Flattens multidimensional array
     wordArr = tempWordArr;
+
     getLengthRange();
     wordArr = tempWordArr.filter(word => word.length <= slider.value);
+    
 
 };
 
@@ -165,16 +175,28 @@ function checkEvent(boxName) {
 
     if(allUnchecked() === false && startButton.hidden === true) {
         generateArray();
-        p.innerText = generateWord();
+        generateWord("checkEvent");
+        slider.value = slider.min;
         sliderDisplay.innerText = `Max Length: ${slider.value}`;
+        
     } else if (allUnchecked() === true) {
         boxName.checked = true;
     };
 }
 //Generates a random word from wordArr
-function generateWord() {
+function generateWord(request) {
+    
+    if (total === 0 || request === "checkEvent") {
+        p.innerText = wordArr[Math.floor(Math.random() * wordArr.length)];
+        p2.innerText = wordArr[Math.floor(Math.random() * wordArr.length)];
+        p3.innerText = wordArr[Math.floor(Math.random() * wordArr.length)];
+    } else {
+        p.innerText = p2.innerText
+        p2.innerText = p3.innerText
+        p3.innerText = wordArr[Math.floor(Math.random() * wordArr.length)];
+    }
 
-    return wordArr[Math.floor(Math.random() * wordArr.length)];
+    //return wordArr[Math.floor(Math.random() * wordArr.length)];
 };
 
 //Calculates percentage score
@@ -217,7 +239,7 @@ userInput.addEventListener('keydown', event => {
         if (userInput.value.trim() !== "") { //If the input is not blank
             gameRun();
             userInput.value = "";
-            p.innerText = generateWord();
+            generateWord("normal");
 
         } else { //Handles the case where a user only enters a blank space
             userInput.style.borderColor = "orange";
@@ -232,22 +254,30 @@ userInput.addEventListener('keydown', event => {
 startButton.addEventListener("click", event => {
     clearData()
     generateArray();
+    generateWord("normal");
     //getLengthRange();
-    p.innerText = generateWord();
+    p2.style.visibility = "visible";
+    p3.style.visibility = "visible";
     startButton.hidden = true;
     restartButton.hidden = false;
+    userInput.focus();
     console.log(slider.min, slider.max);
 });
 
 //Resets game environment with any changes made
 restartButton.addEventListener("click", event => {
     generateArray();
-    p.innerText = generateWord();
+    generateWord("normal");
     clearData();
+    userInput.focus();
 });
 
 slider.oninput = function() {
     sliderDisplay.innerText = `Max Length: ${slider.value}`;
     generateArray();
-    p.innerText = generateWord();
+    generateWord("normal");
 };
+
+function startTimer () {
+
+}

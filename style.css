@@ -396,9 +396,9 @@ hr.vertical {
 }
 
 progress[value] {
-    width:250px;
+    width:300px;
     height: 5px;
-    margin-left: 12px;
+    
     -webkit-appearance: none;
     appearance: none;
 }
@@ -411,7 +411,7 @@ progress[value]::-webkit-progress-bar {
 
 progress[value]::-webkit-progress-value {
     background-image:
-    -webkit-linear-gradient(left, aqua, #f0f);
+    -webkit-linear-gradient(left, #f0f, aqua);
 
     border-radius: 1px;
     background-size: 35px 20px, 100% 100% 100% 100%;

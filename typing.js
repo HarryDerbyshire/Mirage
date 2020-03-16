@@ -13,6 +13,7 @@ let adjCheck = document.getElementById("adjsBox"); //Adjectives checkbox
 let nounCheck = document.getElementById("nounsBox"); //Nouns checkbox
 let verbCheck = document.getElementById("verbsBox"); //Verbs checkbox
 let slider = document.getElementById("lengthRange"); //Slider for length
+let timeBar = document.getElementById("progress"); //Progress bar for the time display
 let sliderDisplay = document.getElementById("sliderValue"); //Display for current slider value
 let lenCount = 0;
 //Counters
@@ -29,6 +30,7 @@ let wordArr = [];
 
 p2.style.visibility = "hidden";
 p3.style.visibility = "hidden";
+
 //Generates the array of words to be shown to user
 function generateArray() { 
 
@@ -59,23 +61,6 @@ function generateArray() {
 };
 
 function getLengthRange() {
-
-
-    //generateArray();
-/*     for(let i=0; i < wordArr.length; i++){
-        if(i === 0 || wordArr[i].length >= slider.max){
-           slider.max = wordArr[i].length;
-        }
-
-        if(wordArr.length > 0 && wordArr[i].length < slider.min){
-            slider.min = wordArr[i].length;
-        }     
-    }; */
-
-    
-    
-    /* sliderDisplay.innerText = `Max Length: ${slider.value}`;
-    console.log(lenCount); */
  
     slider.max = Math.max(...(wordArr.map(el => el.length)));
     slider.min = Math.min(...(wordArr.map(el => el.length)));
@@ -224,8 +209,8 @@ function gameRun () {
         addPill((incorrectWordsArray.toString().split(",").pop()), "incorrectWords", "wordPill");
     }; 
 
-    count.innerText = `${total} / ${counter}`;
-    percentage.innerText = Math.trunc(generatePercentage(total, counter)) + " %";
+    count.innerText = `${total} / ${counter} : ${Math.trunc(generatePercentage(total, counter))} %`;
+    //percentage.innerText = Math.trunc(generatePercentage(total, counter)) + " %";
     document.getElementById("correctCount").innerHTML = "Correct Words (" + total + ")" + "<hr>";
     document.getElementById("incorrectCount").innerHTML = "Incorrect Words (" + incorrectWordsArray.length + ")" + "<hr>";
 };
@@ -262,6 +247,8 @@ startButton.addEventListener("click", event => {
     restartButton.hidden = false;
     userInput.focus();
     console.log(slider.min, slider.max);
+    userInput.disabled = false;
+    timerMode(30);
 });
 
 //Resets game environment with any changes made
@@ -269,7 +256,11 @@ restartButton.addEventListener("click", event => {
     generateArray();
     generateWord("normal");
     clearData();
+    userInput.disabled = false;
     userInput.focus();
+    p2.style.visibility = "visible";
+    p3.style.visibility = "visible";
+    timerMode(30);
 });
 
 slider.oninput = function() {
@@ -278,6 +269,45 @@ slider.oninput = function() {
     generateWord("normal");
 };
 
-function startTimer () {
 
-}
+
+
+function timerMode(timeSeconds, mode) {
+    timeBar.max = timeSeconds * 1000;
+    timeBar.value = timeBar.max;
+    startButton.disabled = true;
+   
+    let t = setInterval(function() {
+                timeBar.value -= 100;
+                    if (timeBar.value <= 0) {
+                        userInput.disabled =true;
+                        userInput.value = "";
+                        startButton.disabled = false;
+                        userInput.style.borderStyle = "hidden";
+                        timeout();
+                        console.log(calcCPM(timeSeconds));
+                        clearInterval(t);
+                        
+                    };
+            }, 100);   
+};
+
+
+function calcCPM(time) {
+
+   const charString = correctWordsArray.toString().split(",").join(" ");
+   console.log(charString);
+   const charCount = charString.length
+   return (charCount / time) * 60;
+};
+
+
+function challengeMode(length, difficulty) {
+
+};
+
+function timeout() {
+    p.innerText = "Time is up!";
+    p2.style.visibility = "hidden";
+    p3.style.visibility = "hidden";
+};
